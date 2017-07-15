@@ -2,12 +2,14 @@
   "name": "ngx-ckeditor",
   "version": "0.1.0",
   "description": "The CKEditor component for angular(2.x and 4.x)",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
+    "publish": "ngc -p tsconfig-aot.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +22,7 @@
     "Angular",
     "Ng2"
   ],
-  "author": "",
+  "author": "Jay.M.Hu",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/HstarComponents/ngx-ckeditor/issues"
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@angular/common": "^4.3.0",
     "@angular/compiler": "^4.3.0",
+    "@angular/compiler-cli": "^4.3.0",
     "@angular/core": "^4.3.0",
     "@angular/forms": "^4.3.0",
     "@angular/platform-browser": "^4.3.0",

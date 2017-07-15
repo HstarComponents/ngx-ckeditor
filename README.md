@@ -73,6 +73,17 @@ export class AppComponent implements OnInit {
 | Input | config | object | {} | CKEditor's config object, [see more](http://docs.ckeditor.com/) |
 | Two-way | ngModel | string | | Two-way binding value |
 
+# How to develop?
+
+```bash
+git clone https://github.com/HstarComponents/ngx-ckeditor.git
+
+# install deps
+npm i 
+
+# run dev
+npm run dev
+```
 
 # Issues
 
