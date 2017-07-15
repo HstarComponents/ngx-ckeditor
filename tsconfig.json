@@ -9,8 +9,8 @@
     "lib": [
       "es2015",
       "es2016",
-      "dom",
-      "scripthost"
+      "es2017",
+      "dom"
     ],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -18,7 +18,10 @@
       "./node_modules/@types/"
     ]
   },
-  "include": [],
+  "include": [
+    "./src/**/*.ts",
+    "./examples/**/*.ts"
+  ],
   "exclude": [
     "./examples/**/*.spec.ts"
   ]

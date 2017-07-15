@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { CKEditorModule } from '../src';
+
 import { AppComponent } from './app/app.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    CKEditorModule
   ],
   declarations: [AppComponent],
   providers: [/* TODO: Providers go here */],
