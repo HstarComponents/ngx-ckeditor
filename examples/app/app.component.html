@@ -1,3 +1,8 @@
 <div class="app">
-  <ck-editor></ck-editor>
+  <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" lang="en" [fullPage]="true"></ck-editor>
+  <hr>
+  <button (click)="setContent()">Set setContent</button>
+  <button (click)="getContent()">GET HTML</button>
+  <hr>
+  <textarea rows="10" cols="100" [value]="editorValue"></textarea>
 </div>
