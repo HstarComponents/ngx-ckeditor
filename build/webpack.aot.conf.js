@@ -19,6 +19,9 @@ module.exports = webpackMerge(baseConfig, {
     chunkFilename: '[id].js'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: '"production"' }
+    }),
     new UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       template: util.root('examples/index.html')
