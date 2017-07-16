@@ -83,6 +83,12 @@ npm i
 
 # run dev
 npm run dev
+
+# build demo
+npm run build
+
+# build aot demo
+npm run build:aot
 ```
 
 # Issues
