@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
     "publish": "ngc -p tsconfig-aot.json",
+    "build": "webpack --config build/webpack.prod.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -45,6 +46,7 @@
     "raw-loader": "^0.5.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.2",
+    "shelljs": "^0.7.8",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "typescript": "^2.4.1",
