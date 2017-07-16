@@ -1,4 +1,6 @@
 # ngx-ckeditor
+[ ![Travis CI Status](https://travis-ci.org/HstarComponents/ngx-ckeditor.svg?branch=master)](https://travis-ci.org/HstarComponents/ngx-ckeditor)
+
 The CKEditor component for angular(2.x and 4.x)
 
 # Usage
