@@ -13,7 +13,7 @@
     "publish": "npm run cleanlib && ngc -p tsconfig-aot.json",
     "build": "webpack --config build/webpack.prod.conf.js",
     "build:aot": "npm run cleanlib && ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"ok\" && exit 1"
   },
   "repository": {
     "type": "git",
