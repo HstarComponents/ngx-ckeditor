@@ -9,9 +9,10 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
-    "publish": "ngc -p tsconfig-aot.json",
+    "cleanlib": "node build/cleanlib.js",
+    "publish": "npm run cleanlib && ngc -p tsconfig-aot.json",
     "build": "webpack --config build/webpack.prod.conf.js",
-    "build:aot": "npm run publish && webpack --config build/webpack.aot.conf.js",
+    "build:aot": "npm run cleanlib && ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
