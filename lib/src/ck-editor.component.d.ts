@@ -12,6 +12,7 @@ export declare class CKEditorComponent implements OnInit, OnDestroy, OnChanges, 
     skin: string;
     language: string;
     fullPage: boolean;
+    inline: boolean;
     ck: ElementRef;
     constructor(ngZone: NgZone);
     ngOnInit(): void;
