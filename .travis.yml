@@ -1,15 +1,16 @@
-# 指定运行环境
+# Special the runtime
 language: node_js
 
-# 指定nodejs版本，可以指定多个
+# Special the node version, can set multi versions
 node_js:
   - 6.11.1
+  - 8
 
-# 要运行的脚本命令
+# Set the script for running
 script:
   - npm run test
 
-# 设定分支，分支push时才会触发CI
+# Set which branch should fire the CI flow
 branches:
   only:
     - master
