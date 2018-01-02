@@ -1,5 +1,5 @@
 <div class="app">
-  <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" lang="en" [fullPage]="true"></ck-editor>
+  <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" lang="en" [fullPage]="true" #ckEditor="ckEditor"></ck-editor>
   <hr>
   <button (click)="setContent()">Set setContent</button>
   <button (click)="getContent()">GET HTML</button>
