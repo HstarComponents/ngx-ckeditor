@@ -13,9 +13,7 @@
     "publish": "npm run cleanlib && ngc -p tsconfig-aot.json",
     "build": "webpack --config build/webpack.prod.conf.js",
     "build:aot": "npm run cleanlib && ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
-    "test": "echo \"ok\" && exit 0",
-    "install": "npm install && npm run build && npm run build:aot",
-    "postinstall": "node build/postinstall.js"
+    "test": "echo \"ok\" && exit 0"
   },
   "repository": {
     "type": "git",
