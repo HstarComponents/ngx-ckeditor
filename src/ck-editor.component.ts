@@ -1,9 +1,19 @@
 import {
-  Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, forwardRef,
-  OnDestroy, OnChanges, SimpleChanges, AfterViewInit,
-  NgZone
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Input,
+  NgZone,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 declare var CKEDITOR: any;
 
@@ -21,38 +31,37 @@ export const CKEDITOR_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'ck-editor',
   template: `<textarea #ck></textarea>`,
-  providers: [CKEDITOR_VALUE_ACCESSOR]
+  providers: [CKEDITOR_VALUE_ACCESSOR],
+  exportAs: 'ckEditor'
 })
-export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
-
+export class CKEditorComponent
+  implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
   private ckIns: any;
-  private onChange(_: any) { };
-  private onTouched() { };
+  private onChange(_: any) {}
+  private onTouched() {}
   private innerValue: string = '';
+  public get instance() {
+    return this.ckIns;
+  }
 
-  @Input()
-  public readonly: boolean = false;
+  @Input() public readonly: boolean = false;
 
-  @Input()
-  public config: any = {};
+  @Input() public config: any = {};
 
-  @Input()
-  public skin: string = 'moono-lisa';
+  @Input() public skin: string = 'moono-lisa';
 
-  @Input()
-  public language: string = 'en';
+  @Input() public language: string = 'en';
 
   @Input()
   public fullPage: boolean = false;
   @Input()
   public inline: boolean = false;
 
-  @ViewChild('ck')
-  public ck: ElementRef;
+  @ViewChild('ck') public ck: ElementRef;
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private ngZone: NgZone) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.ckIns) {
@@ -118,7 +127,5 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {
-
-  }
+  setDisabledState?(isDisabled: boolean): void {}
 }
