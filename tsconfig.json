@@ -23,6 +23,7 @@
     "./examples/**/*.ts"
   ],
   "exclude": [
+    "./examples/main-aot.ts",
     "./examples/**/*.spec.ts"
   ]
 }
