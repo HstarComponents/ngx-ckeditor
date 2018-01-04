@@ -1,4 +1,4 @@
-import { OnInit, ElementRef, OnDestroy, OnChanges, SimpleChanges, AfterViewInit, NgZone } from '@angular/core';
+import { AfterViewInit, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 export declare const CKEDITOR_VALUE_ACCESSOR: any;
 export declare class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
@@ -7,6 +7,7 @@ export declare class CKEditorComponent implements OnInit, OnDestroy, OnChanges, 
     private onChange(_);
     private onTouched();
     private innerValue;
+    readonly instance: any;
     readonly: boolean;
     config: any;
     skin: string;
