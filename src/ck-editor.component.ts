@@ -52,7 +52,10 @@ export class CKEditorComponent
 
   @Input() public language: string = 'en';
 
-  @Input() public fullPage: boolean = false;
+  @Input()
+  public fullPage: boolean = false;
+  @Input()
+  public inline: boolean = false;
 
   @ViewChild('ck') public ck: ElementRef;
 
@@ -71,7 +74,6 @@ export class CKEditorComponent
 
   ngOnDestroy() {
     if (this.ckIns) {
-      this.ckIns.removeAllListeners();
       CKEDITOR.instances[this.ckIns.name].destroy();
       this.ckIns.destroy();
       this.ckIns = null;
@@ -90,14 +92,14 @@ export class CKEditorComponent
       readOnly: this.readonly,
       skin: this.skin,
       language: this.language,
-      fullPage: this.fullPage
+      fullPage: this.fullPage,
+      inline: this.inline
     });
-    this.ckIns = CKEDITOR.replace(this.ck.nativeElement, opt);
+    this.ckIns = opt.inline ? CKEDITOR.inline(this.ck.nativeElement, opt) : CKEDITOR.replace(this.ck.nativeElement, opt);
     this.ckIns.setData(this.innerValue);
     this.ckIns.on('change', () => {
       this.onTouched();
       let val = this.ckIns.getData();
-      console.warn('chagne', val);
       this.updateValue(val);
     });
   }
@@ -111,7 +113,6 @@ export class CKEditorComponent
   }
 
   writeValue(value: any): void {
-    console.log(value);
     this.innerValue = value || '';
     if (this.ckIns) {
       this.ckIns.setData(this.innerValue);
