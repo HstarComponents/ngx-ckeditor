@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef,
   Input,
   NgZone,
   OnChanges,
@@ -11,11 +10,10 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-declare var CKEDITOR: any;
 
 const defaults = {
   contentsCss: [''],
@@ -34,8 +32,7 @@ export const CKEDITOR_VALUE_ACCESSOR: any = {
   providers: [CKEDITOR_VALUE_ACCESSOR],
   exportAs: 'ckEditor'
 })
-export class CKEditorComponent
-  implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
+export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
   private ckIns: any;
   private onChange(_: any) {}
   private onTouched() {}
@@ -72,7 +69,7 @@ export class CKEditorComponent
   ngOnDestroy() {
     if (this.ckIns) {
       this.ckIns.removeAllListeners();
-      CKEDITOR.instances[this.ckIns.name].destroy();
+      window['CKEDITOR'].instances[this.ckIns.name].destroy();
       this.ckIns.destroy();
       this.ckIns = null;
     }
@@ -83,7 +80,7 @@ export class CKEditorComponent
   }
 
   private initCKEditor() {
-    if (typeof CKEDITOR === 'undefined') {
+    if (typeof window['CKEDITOR'] === 'undefined') {
       return console.warn('CKEditor 4.x is missing (http://ckeditor.com/)');
     }
     let opt = Object.assign({}, defaults, this.config, {
@@ -92,7 +89,7 @@ export class CKEditorComponent
       language: this.language,
       fullPage: this.fullPage
     });
-    this.ckIns = CKEDITOR.replace(this.ck.nativeElement, opt);
+    this.ckIns = window['CKEDITOR'].replace(this.ck.nativeElement, opt);
     this.ckIns.setData(this.innerValue);
     this.ckIns.on('change', () => {
       this.onTouched();
