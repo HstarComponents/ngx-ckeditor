@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef,
   Input,
   NgZone,
   OnChanges,
@@ -11,7 +10,8 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -35,10 +35,8 @@ export const CKEDITOR_VALUE_ACCESSOR: any = {
 export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
   private ckIns: any;
 
-  private propagateChange(_: any) {
-  }
-  private propagateTouch() {
-  }
+  private propagateChange(_: any) {}
+  private propagateTouch() {}
 
   private innerValue: string = '';
 
@@ -61,11 +59,9 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
   @ViewChild('ck') public ck: ElementRef;
 
-  constructor(private ngZone: NgZone) {
-  }
+  constructor(private ngZone: NgZone) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.destroyCKEditor();
@@ -80,8 +76,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     this.destroyCKEditor();
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   private initCKEditor(identifier: string) {
     if (typeof window['CKEDITOR'] === 'undefined') {
@@ -147,6 +142,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   writeValue(value: any): void {
     this.innerValue = value || '';
     if (this.ckIns) {
+      // Fix bug that can't emit change event when set non-html tag value twice in fullpage mode.
       this.ckIns.setData(this.innerValue);
       let val = this.ckIns.getData();
       this.ckIns.setData(val);
@@ -161,6 +157,5 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     this.propagateTouch = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-  }
+  setDisabledState?(isDisabled: boolean): void {}
 }
