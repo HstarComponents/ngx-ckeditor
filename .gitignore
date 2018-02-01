@@ -2,3 +2,5 @@ node_modules/
 dist/
 aot/
 npm-debug.log
+.idea
+*.iml

@@ -7,6 +7,7 @@ import { CKEditorComponent } from '../../src';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public editorValue: string = '';
+  public language = 'en';
 
   public setContent() {
     this.editorValue = '<p>1111</p>';
@@ -14,6 +15,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   public getContent() {
     alert(this.editorValue);
+  }
+
+  changeLanguage() {
+    this.language = this.language === 'en' ? 'de' : 'en';
   }
 
   @ViewChild('ckEditor') ckEditor: CKEditorComponent;
