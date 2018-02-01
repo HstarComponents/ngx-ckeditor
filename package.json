@@ -23,7 +23,8 @@
     "Ckeditor",
     "Component",
     "Angular",
-    "Ng2"
+    "Ng2",
+    "Ngx"
   ],
   "author": "Jay.M.Hu",
   "license": "MIT",

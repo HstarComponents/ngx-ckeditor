@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  forwardRef,
   Input,
   NgZone,
   OnChanges,
@@ -10,8 +11,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild,
-  forwardRef
+  ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -34,55 +34,63 @@ export const CKEDITOR_VALUE_ACCESSOR: any = {
 })
 export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
   private ckIns: any;
-  private onChange(_: any) {}
-  private onTouched() {}
+
+  private propagateChange(_: any) {
+  }
+  private propagateTouch() {
+  }
+
   private innerValue: string = '';
+
   public get instance() {
     return this.ckIns;
   }
 
+  private identifier: string;
+
   @Input() public readonly: boolean = false;
-
   @Input() public config: any = {};
-
   @Input() public skin: string = 'moono-lisa';
-
   @Input() public language: string = 'en';
-
   @Input() public fullPage: boolean = false;
+
+  @Output() change = new EventEmitter();
+  @Output() ready = new EventEmitter();
+  @Output() blur = new EventEmitter();
+  @Output() focus = new EventEmitter();
 
   @ViewChild('ck') public ck: ElementRef;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!this.ckIns) {
-      return;
-    }
-    if (changes.readonly) {
-      this.ckIns.setReadOnly(this.readonly);
-    }
+    this.destroyCKEditor();
+    this.initCKEditor(CKEditorComponent.getRandomIdentifier());
+  }
+
+  private static getRandomIdentifier() {
+    return 'editor-' + Math.round(Math.random() * 100000000);
   }
 
   ngOnDestroy() {
-    if (this.ckIns) {
-      this.ckIns.removeAllListeners();
-      window['CKEDITOR'].instances[this.ckIns.name].destroy();
-      this.ckIns.destroy();
-      this.ckIns = null;
-    }
+    this.destroyCKEditor();
   }
 
   ngAfterViewInit() {
-    this.initCKEditor();
   }
 
-  private initCKEditor() {
+  private initCKEditor(identifier: string) {
     if (typeof window['CKEDITOR'] === 'undefined') {
       return console.warn('CKEditor 4.x is missing (http://ckeditor.com/)');
     }
+
+    this.identifier = identifier;
+    this.ck.nativeElement.setAttribute('name', identifier);
+
     let opt = Object.assign({}, defaults, this.config, {
       readOnly: this.readonly,
       skin: this.skin,
@@ -91,37 +99,62 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     });
     this.ckIns = window['CKEDITOR'].replace(this.ck.nativeElement, opt);
     this.ckIns.setData(this.innerValue);
+
     this.ckIns.on('change', () => {
-      this.onTouched();
       let val = this.ckIns.getData();
-      console.warn('chagne', val);
       this.updateValue(val);
     });
+
+    this.ckIns.on('instanceReady', (evt: any) => {
+      this.ready.emit(evt);
+    });
+
+    this.ckIns.on('blur', (evt: any) => {
+      this.blur.emit(evt);
+      this.propagateTouch();
+    });
+
+    this.ckIns.on('focus', (evt: any) => {
+      this.focus.emit(evt);
+    });
+  }
+
+  private destroyCKEditor() {
+    if (this.ckIns) {
+      this.ckIns.removeAllListeners();
+      window['CKEDITOR'].remove(window['CKEDITOR'].instances[this.ckIns.name]);
+      this.ckIns.destroy();
+      this.ckIns = null;
+      document.querySelector('#cke_' + this.identifier).remove();
+    }
   }
 
   private updateValue(value: string) {
     this.ngZone.run(() => {
       this.innerValue = value;
-      this.onChange(value); // 通知外部ngModel更新
-      this.onTouched();
+      this.propagateChange(value);
+      this.propagateTouch();
+      this.change.emit(value);
     });
   }
 
   writeValue(value: any): void {
-    console.log(value);
     this.innerValue = value || '';
     if (this.ckIns) {
       this.ckIns.setData(this.innerValue);
-      // 修复FullPage模式下，当连续设置两次不带html标记的值时，不会触发change事件，导致ngModel无法更新的bug。
       let val = this.ckIns.getData();
       this.ckIns.setData(val);
     }
   }
+
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.propagateChange = fn;
   }
+
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.propagateTouch = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {}
+
+  setDisabledState?(isDisabled: boolean): void {
+  }
 }
