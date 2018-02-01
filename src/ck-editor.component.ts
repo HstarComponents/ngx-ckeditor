@@ -106,16 +106,22 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     });
 
     this.ckIns.on('instanceReady', (evt: any) => {
-      this.ready.emit(evt);
+      this.ngZone.run(() => {
+        this.ready.emit(evt);
+      });
     });
 
     this.ckIns.on('blur', (evt: any) => {
-      this.blur.emit(evt);
-      this.propagateTouch();
+      this.ngZone.run(() => {
+        this.blur.emit(evt);
+        this.propagateTouch();
+      });
     });
 
     this.ckIns.on('focus', (evt: any) => {
-      this.focus.emit(evt);
+      this.ngZone.run(() => {
+        this.focus.emit(evt);
+      });
     });
   }
 
