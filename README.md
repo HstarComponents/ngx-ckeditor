@@ -93,6 +93,12 @@ npm run build
 npm run build:aot
 ```
 
+# FAQ?
+
+1. Metadata version mismatch found version 4, expected 3
+
+A: That because the lib is build for angular 5.x, it will throw the error when your used angular version is 4.x, please use `ngx-ckeditor@2` for angular 4.x.
+
 # Issues
 
 [Create an issue](https://github.com/HstarComponents/ngx-ckeditor/issues/new)
