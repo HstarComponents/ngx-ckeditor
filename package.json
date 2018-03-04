@@ -1,16 +1,16 @@
 {
   "name": "ngx-ckeditor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "The CKEditor component for angular(2.x and 4.x)",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
     "cleanlib": "node build/cleanlib.js",
-    "lib": "npm run cleanlib && tsc -p tsconfig-aot.json",
+    "lib": "npm run cleanlib && ngc -p tsconfig-aot.json",
     "build": "webpack --config build/webpack.prod.conf.js",
     "build:aot": "ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
     "test": "echo \"ok\" && exit 0"

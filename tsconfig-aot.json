@@ -16,6 +16,8 @@
   "include": ["src/**/*.ts"],
   "angularCompilerOptions": {
     "genDir": "aot",
-    "skipMetadataEmit": false
+    "skipMetadataEmit": false,
+    "skipTemplateCodegen": false,
+    "annotationsAs": "decorators"
   }
 }
