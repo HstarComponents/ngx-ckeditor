@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.3.0 (2017.03.05)
+
+- Fix issue [#6](#6)
+
 ## 0.2.0 (2017.02.02)
 
 - Merge Request [https://github.com/HstarComponents/ngx-ckeditor/pull/5](https://github.com/HstarComponents/ngx-ckeditor/pull/5)
