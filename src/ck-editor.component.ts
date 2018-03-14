@@ -11,8 +11,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  forwardRef,
-  Renderer2
+  forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
