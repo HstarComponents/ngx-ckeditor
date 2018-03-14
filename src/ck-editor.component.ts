@@ -126,8 +126,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   private destroyCKEditor() {
-    if (this.ckIns) {
-      this.ckIns.removeAllListeners();
+    if (this.ckIns) {      
       CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       this.ckIns.destroy();
       this.ckIns = null;
