@@ -45,7 +45,7 @@ Then use it in your component:
 ```html
 // app.component.html
 
-<ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" lang="en" [fullPage]="true"></ck-editor>
+<ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
 ```
 
 ```js

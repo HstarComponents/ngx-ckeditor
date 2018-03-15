@@ -15,6 +15,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+declare var CKEDITOR: any;
+
 const defaults = {
   contentsCss: [''],
   customConfig: ''
@@ -52,6 +54,8 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   @Input() public language: string = 'en';
   @Input() public fullPage: boolean = false;
 
+  @Input() public inline: boolean = false;
+
   @Output() change = new EventEmitter();
   @Output() ready = new EventEmitter();
   @Output() blur = new EventEmitter();
@@ -79,7 +83,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   ngAfterViewInit() {}
 
   private initCKEditor(identifier: string) {
-    if (typeof window['CKEDITOR'] === 'undefined') {
+    if (typeof CKEDITOR === 'undefined') {
       return console.warn('CKEditor 4.x is missing (http://ckeditor.com/)');
     }
 
@@ -90,9 +94,10 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
       readOnly: this.readonly,
       skin: this.skin,
       language: this.language,
-      fullPage: this.fullPage
+      fullPage: this.fullPage,
+      inline: this.inline
     });
-    this.ckIns = window['CKEDITOR'].replace(this.ck.nativeElement, opt);
+    this.ckIns = opt.inline ? CKEDITOR.inline(this.ck.nativeElement, opt) : CKEDITOR.replace(this.ck.nativeElement, opt);
     this.ckIns.setData(this.innerValue);
 
     this.ckIns.on('change', () => {
@@ -121,9 +126,8 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   private destroyCKEditor() {
-    if (this.ckIns) {
-      this.ckIns.removeAllListeners();
-      window['CKEDITOR'].remove(window['CKEDITOR'].instances[this.ckIns.name]);
+    if (this.ckIns) {      
+      CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       this.ckIns.destroy();
       this.ckIns = null;
       document.querySelector('#cke_' + this.identifier).remove();
