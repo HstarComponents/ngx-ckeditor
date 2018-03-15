@@ -53,8 +53,8 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   @Input() public skin: string = 'moono-lisa';
   @Input() public language: string = 'en';
   @Input() public fullPage: boolean = false;
-
   @Input() public inline: boolean = false;
+  @Input() public id: string;
 
   @Output() change = new EventEmitter();
   @Output() ready = new EventEmitter();
@@ -69,11 +69,11 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
   ngOnChanges(changes: SimpleChanges): void {
     this.destroyCKEditor();
-    this.initCKEditor(CKEditorComponent.getRandomIdentifier());
+    this.initCKEditor(CKEditorComponent.getRandomIdentifier(this.id));
   }
 
-  private static getRandomIdentifier() {
-    return 'editor-' + Math.round(Math.random() * 100000000);
+  private static getRandomIdentifier(id: string = '') {
+    return 'editor-' + (id !== '' ? id : Math.round(Math.random() * 100000000));
   }
 
   ngOnDestroy() {
@@ -88,7 +88,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     }
 
     this.identifier = identifier;
-    this.ck.nativeElement.setAttribute('name', identifier);
+    this.ck.nativeElement.setAttribute('name', this.identifier);
 
     let opt = Object.assign({}, defaults, this.config, {
       readOnly: this.readonly,
@@ -97,7 +97,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
       fullPage: this.fullPage,
       inline: this.inline
     });
-    this.ckIns = opt.inline ? CKEDITOR.inline(this.ck.nativeElement, opt) : CKEDITOR.replace(this.ck.nativeElement, opt);
+    this.ckIns = this.inline ? CKEDITOR.inline(this.ck.nativeElement, opt) : CKEDITOR.replace(this.ck.nativeElement, opt);
     this.ckIns.setData(this.innerValue);
 
     this.ckIns.on('change', () => {
@@ -126,11 +126,13 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   private destroyCKEditor() {
-    if (this.ckIns) {      
-      CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
+    if (this.ckIns) {
+      if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name))
+        CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       this.ckIns.destroy();
       this.ckIns = null;
-      document.querySelector('#cke_' + this.identifier).remove();
+      if (document.querySelector('#cke_' + this.identifier) != null)
+        document.querySelector('#cke_' + this.identifier).remove();
     }
   }
 
