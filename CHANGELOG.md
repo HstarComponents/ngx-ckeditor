@@ -1,6 +1,10 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
+## 0.3.1 (2017.03.15)
+
+- Merge Request [#9](#9)
+- Merge Pull Request [#10](#10)
 
 ## 0.3.0 (2017.03.05)
 

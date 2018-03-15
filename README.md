@@ -91,6 +91,9 @@ npm run build
 
 # build aot demo
 npm run build:aot
+
+# publish
+npm run lib
 ```
 
 # FAQ?

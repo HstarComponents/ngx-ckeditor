@@ -14,6 +14,8 @@ export declare class CKEditorComponent implements OnInit, OnDestroy, OnChanges, 
     skin: string;
     language: string;
     fullPage: boolean;
+    inline: boolean;
+    id: string;
     change: EventEmitter<{}>;
     ready: EventEmitter<{}>;
     blur: EventEmitter<{}>;
@@ -22,7 +24,7 @@ export declare class CKEditorComponent implements OnInit, OnDestroy, OnChanges, 
     constructor(ngZone: NgZone);
     ngOnInit(): void;
     ngOnChanges(changes: SimpleChanges): void;
-    private static getRandomIdentifier();
+    private static getRandomIdentifier(id?);
     ngOnDestroy(): void;
     ngAfterViewInit(): void;
     private initCKEditor(identifier);
