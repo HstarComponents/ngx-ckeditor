@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
 | Input | language | string | 'en' | Set the editor language |
 | Input | fullPage | boolean | false | Enalbed /disable fullPage mode on editor |
 | Input | config | object | {} | CKEditor's config object, [see more](http://docs.ckeditor.com/) |
+| Input | inline | boolean | false | Set the inline mode |
 | Two-way | ngModel | string | | Two-way binding value |
 
 # How to develop?
