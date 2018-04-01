@@ -90,18 +90,20 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     this.identifier = identifier;
     this.ck.nativeElement.setAttribute('name', this.identifier);
 
-    let opt = Object.assign({}, defaults, this.config, {
+    const opt = Object.assign({}, defaults, this.config, {
       readOnly: this.readonly,
       skin: this.skin,
       language: this.language,
       fullPage: this.fullPage,
       inline: this.inline
     });
-    this.ckIns = this.inline ? CKEDITOR.inline(this.ck.nativeElement, opt) : CKEDITOR.replace(this.ck.nativeElement, opt);
+    this.ckIns = this.inline
+      ? CKEDITOR.inline(this.ck.nativeElement, opt)
+      : CKEDITOR.replace(this.ck.nativeElement, opt);
     this.ckIns.setData(this.innerValue);
 
     this.ckIns.on('change', () => {
-      let val = this.ckIns.getData();
+      const val = this.ckIns.getData();
       this.updateValue(val);
     });
 
@@ -127,8 +129,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
   private destroyCKEditor() {
     if (this.ckIns) {
-      if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name))
-        CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
+      if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name)) CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       this.ckIns.destroy();
       this.ckIns = null;
       if (document.querySelector('#cke_' + this.identifier) != null)
