@@ -1,1 +1,13 @@
-<div class="reactive-form-demo"> Hello ReactiveFormDemoComponent! </div>
+<div class="reactive-form-demo">
+  <h2>Reactive form demo</h2>
+  <form [formGroup]="heroForm">
+    <fieldset>
+      <legend>Editor</legend>
+      <ck-editor skin="moono-lisa" [language]="language" [fullPage]="true" formControlName="html"></ck-editor>
+    </fieldset>
+    <fieldset>
+      <legend>Value</legend>
+      <textarea rows="10" cols="100" class="form-control" [value]="heroForm.value.html"></textarea>
+    </fieldset>
+  </form>
+</div>
