@@ -16,4 +16,8 @@ export class ReactiveFormDemoComponent implements OnInit {
       html: ''
     });
   }
+
+  editorValueChange(value: string) {
+    console.log('new value:', value);
+  }
 }

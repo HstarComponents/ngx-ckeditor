@@ -29,6 +29,10 @@ export class BasicDemoComponent implements OnInit {
     this._addImageUploadBtn();
   }
 
+  handleValueChange(value: string) {
+    console.log('new value', value);
+  }
+
   _addImageUploadBtn() {
     const editor = this.ckEditor.instance;
     editor.addCommand('uploadImage', {
