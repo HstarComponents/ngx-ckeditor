@@ -3,7 +3,7 @@
   <form [formGroup]="heroForm">
     <fieldset>
       <legend>Editor</legend>
-      <ck-editor skin="moono-lisa" [language]="language" [fullPage]="true" formControlName="html" (change)="editorValueChange($event)"></ck-editor>
+      <ck-editor skin="moono-lisa" [config]="editorConfig"  [language]="language" [fullPage]="true" formControlName="html" (change)="editorValueChange($event)"></ck-editor>
     </fieldset>
     <fieldset>
       <legend>Value</legend>

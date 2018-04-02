@@ -9,6 +9,19 @@ export class ReactiveFormDemoComponent implements OnInit {
   heroForm: FormGroup;
   language = 'en';
   editorValue = '';
+  editorConfig = {
+    extraPlugins: 'wordcount',
+    wordcount: {
+      // Whether or not you want to show the Word Count
+      showWordCount: true,
+      // Whether or not you want to show the Char Count
+      showCharCount: true
+      // Maximum allowed Word Count
+      // maxWordCount: 4,
+      // Maximum allowed Char Count
+      // maxCharCount: 10
+    }
+  };
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
