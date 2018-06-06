@@ -2,6 +2,7 @@
   <fieldset>
     <legend>Editor</legend>
     <ck-editor [(ngModel)]="editorValue" skin="moono-lisa" [language]="language" [fullPage]="true" #ckEditor="ckEditor" (change)="handleValueChange($event)"></ck-editor>
+    <!-- <ck-editor [(ngModel)]="editorValue"></ck-editor> -->
   </fieldset>
   <hr>
   <fieldset>

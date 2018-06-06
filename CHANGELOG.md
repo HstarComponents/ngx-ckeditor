@@ -1,6 +1,19 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
+
+## 0.3.2 (2018.06.07)
+
+- Fix bug that is only use ngModel, the editor not render.
+
+## 0.2.2 (2018.06.07)
+
+- Fix bug that is only use ngModel, the editor not render.
+
+## 0.2.1 (2018.06.07)
+
+- Fix ts build error.
+
 ## 0.3.1 (2018.03.15)
 
 - Merge Request [#9](#9)

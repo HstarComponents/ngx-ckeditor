@@ -80,7 +80,10 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     this.destroyCKEditor();
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.destroyCKEditor();
+    this.initCKEditor(CKEditorComponent.getRandomIdentifier(this.id));
+  }
 
   private initCKEditor(identifier: string) {
     if (typeof CKEDITOR === 'undefined') {
@@ -132,8 +135,10 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
       if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name)) CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       this.ckIns.destroy();
       this.ckIns = null;
-      if (document.querySelector('#cke_' + this.identifier) != null)
-        document.querySelector('#cke_' + this.identifier).remove();
+      const editorEl = document.querySelector('#cke_' + this.identifier);
+      if (editorEl != null) {
+        editorEl.parentElement && editorEl.parentElement.removeChild(editorEl);
+      }
     }
   }
 

@@ -34,7 +34,10 @@ export class BasicDemoComponent implements OnInit {
   }
 
   _addImageUploadBtn() {
-    const editor = this.ckEditor.instance;
+    const editor = this.ckEditor && this.ckEditor.instance;
+    if (!editor) {
+      return;
+    }
     editor.addCommand('uploadImage', {
       exec: function(editor: any) {
         // Remove img input.
