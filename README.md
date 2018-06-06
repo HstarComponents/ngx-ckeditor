@@ -1,4 +1,5 @@
 # ngx-ckeditor
+
 [ ![Travis CI Status](https://travis-ci.org/HstarComponents/ngx-ckeditor.svg?branch=master)](https://travis-ci.org/HstarComponents/ngx-ckeditor)
 
 The CKEditor component for angular(2.x and 4.x)
@@ -21,7 +22,7 @@ npm i -S ngx-ckeditor
 
 ## Sample
 
-Import `CKEditorModule` module in your main module: 
+Import `CKEditorModule` module in your main module:
 
 ```
 // app.module.ts
@@ -66,15 +67,15 @@ export class AppComponent implements OnInit {
 
 ## `CKEditorComponent` Options
 
-| Type | Name | DataType | Default Value | Description |
-| --- | --- | --- | --- | --- |
-| Input | readonly | boolean | false | Enabled / disable readonly on editor |
-| Input | skin | string | 'moono-lisa' | Set the editor skin |
-| Input | language | string | 'en' | Set the editor language |
-| Input | fullPage | boolean | false | Enalbed /disable fullPage mode on editor |
-| Input | config | object | {} | CKEditor's config object, [see more](http://docs.ckeditor.com/) |
-| Input | inline | boolean | false | Set the inline mode |
-| Two-way | ngModel | string | | Two-way binding value |
+| Type    | Name     | DataType | Default Value | Description                                                     |
+| ------- | -------- | -------- | ------------- | --------------------------------------------------------------- |
+| Input   | readonly | boolean  | false         | Enabled / disable readonly on editor                            |
+| Input   | skin     | string   | 'moono-lisa'  | Set the editor skin                                             |
+| Input   | language | string   | 'en'          | Set the editor language                                         |
+| Input   | fullPage | boolean  | false         | Enalbed /disable fullPage mode on editor                        |
+| Input   | config   | object   | {}            | CKEditor's config object, [see more](http://docs.ckeditor.com/) |
+| Input   | inline   | boolean  | false         | Set the inline mode                                             |
+| Two-way | ngModel  | string   |               | Two-way binding value                                           |
 
 # How to develop?
 
@@ -82,7 +83,7 @@ export class AppComponent implements OnInit {
 git clone https://github.com/HstarComponents/ngx-ckeditor.git
 
 # install deps
-npm i 
+npm i
 
 # run dev
 npm run dev
@@ -99,9 +100,9 @@ npm run lib
 
 # FAQ?
 
-1. Metadata version mismatch found version 4, expected 3
+1、Metadata version mismatch found version 4, expected 3
 
-A: That because the lib is build for angular 5.x, it will throw the error when your used angular version is 4.x, please use `ngx-ckeditor@0.2.0` for angular 4.x.
+A: That because the lib is build for angular 5.x, it will throw the error when your used angular version is 4.x, please use `ngx-ckeditor@0.2.x` for angular 4.x.
 
 # Issues
 
