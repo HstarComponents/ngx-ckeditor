@@ -1,2 +1,3 @@
-export declare class CKEditorModule {
-}
+import { NgModule } from '@angular/core';
+@NgModule({})
+export class CKEditorModule {}
