@@ -77,6 +77,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   ngAfterViewInit() {
+    this.destroyCKEditor();
     this.initCKEditor(CKEditorComponent.getRandomIdentifier());
   }
 
