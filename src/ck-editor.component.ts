@@ -129,7 +129,10 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
       window['CKEDITOR'].remove(window['CKEDITOR'].instances[this.ckIns.name]);
       this.ckIns.destroy();
       this.ckIns = null;
-      document.querySelector('#cke_' + this.identifier).remove();
+      const editorEl = document.querySelector('#cke_' + this.identifier);
+      if (editorEl) {
+        editorEl.parentElement && editorEl.parentElement.removeChild(editorEl);
+      }
     }
   }
 
