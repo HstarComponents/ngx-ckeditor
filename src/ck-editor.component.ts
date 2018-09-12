@@ -100,9 +100,15 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
       fullPage: this.fullPage,
       inline: this.inline
     });
-    this.ckIns = this.inline
-      ? CKEDITOR.inline(this.ck.nativeElement, opt)
-      : CKEDITOR.replace(this.ck.nativeElement, opt);
+    if (this.inline) {
+      this.ckIns = CKEDITOR.inline(this.ck.nativeElement, opt);
+      let nativeElement = CKEDITOR.dom.element.get(this.ck.nativeElement);
+      let textArea = nativeElement.is("textarea") ? nativeElement : null;
+      this.ckIns.container = CKEDITOR.dom.element.createFromHtml('\x3cdiv contenteditable\x3d"' + !!opt.readOnly + '" class\x3d"cke_textarea_inline"\x3e' + textArea.getValue() + "\x3c/div\x3e", CKEDITOR.document);
+    }
+    else {
+      this.ckIns = CKEDITOR.replace(this.ck.nativeElement, opt);
+    }
     this.ckIns.setData(this.innerValue);
 
     this.ckIns.on('change', () => {
