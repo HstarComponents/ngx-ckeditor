@@ -23,4 +23,8 @@ export class DynamicConfigDemoComponent implements OnInit {
       alert('Invalid json config.');
     }
   }
+
+  public handleValueChange(ex: any) {
+    console.log(ex);
+  }
 }
