@@ -3,8 +3,8 @@ language: node_js
 
 # Special the node version, can set multi versions
 node_js:
-  - 6.11.1
   - 8
+  - 10
 
 # Set the script for running
 script:
