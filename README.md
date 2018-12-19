@@ -86,16 +86,21 @@ git clone https://github.com/HstarComponents/ngx-ckeditor.git
 npm i
 
 # run dev
-npm run dev
+npm run dev 
+# or
+npm start
 
 # build demo
-npm run build
+npm run build:demo
 
-# build aot demo
-npm run build:aot
+# build lib
+npm run build:lib
 
 # publish
-npm run lib
+npm run publish:lib
+
+# test
+npm test
 ```
 
 # FAQ?

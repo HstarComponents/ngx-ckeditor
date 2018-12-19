@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.0 (2018-12-xx)
+
+- Use `@angular/cli` build the project.
+
 ## 0.3.2 (2018.06.07)
 
 - Fix bug that is only use ngModel, the editor not render.

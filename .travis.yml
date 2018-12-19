@@ -8,9 +8,10 @@ node_js:
 
 # Set the script for running
 script:
-  - npm run test
+  - npm run test:lib
 
 # Set which branch should fire the CI flow
 branches:
   only:
     - master
+    - develop

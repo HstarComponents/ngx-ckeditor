@@ -10,23 +10,18 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "ng serve",
-    "build": "webpack --config build/webpack.prod.conf.js",
-    "build:aot": "ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
     "build:lib": "ng build ngx-ckeditor --prod",
-    "test": "echo \"ok\" && exit 0",
-    "lint": "ng lint"
+    "build:demo": "ng build examples --prod",
+    "lint:lib": "ng lint ngx-ckeditor",
+    "lint:demo": "ng lint examples",
+    "publish:lib": "npm run lint:lib && cd dist && npm publish",
+    "test:lib": "ng test ngx-ckeditor --watch=false"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HstarComponents/ngx-ckeditor.git"
   },
-  "keywords": [
-    "Ckeditor",
-    "Component",
-    "Angular",
-    "Ng2",
-    "Ngx"
-  ],
+  "keywords": ["Ckeditor", "Component", "Angular", "Ng2", "Ngx"],
   "author": "Jay.M.Hu",
   "license": "MIT",
   "bugs": {
