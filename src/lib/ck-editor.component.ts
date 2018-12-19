@@ -30,7 +30,9 @@ export const CKEDITOR_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'ck-editor',
-  template: `<textarea #ck></textarea>`,
+  template: `
+    <textarea #ck></textarea>
+  `,
   providers: [CKEDITOR_VALUE_ACCESSOR],
   exportAs: 'ckEditor'
 })

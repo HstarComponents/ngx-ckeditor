@@ -4,13 +4,8 @@ import { CKEditorComponent } from './ck-editor.component';
 
 @NgModule({
   imports: [],
-  exports: [
-    FormsModule,
-    CKEditorComponent
-  ],
+  exports: [FormsModule, CKEditorComponent],
   declarations: [CKEditorComponent],
-  providers: [],
+  providers: []
 })
-export class CKEditorModule {
-
-}
+export class CKEditorModule {}
