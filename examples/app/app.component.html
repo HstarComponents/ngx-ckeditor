@@ -20,34 +20,14 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <li
+            *ngFor="let menu of menus"
             class="nav-item"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{exact:true}">
             <a
               class="nav-link"
-              routerLink="/">
-              Basic Demo
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact:true}">
-            <a
-              class="nav-link"
-              routerLink="/form">
-              ReactiveForm Demo
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact:true}">
-            <a
-              class="nav-link"
-              routerLink="/dynamic-config">
-              Dynamic Config
+              [routerLink]="menu.path">
+              {{menu.title}}
             </a>
           </li>
           <li class="nav-item">
