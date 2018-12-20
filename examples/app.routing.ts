@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BasicDemoComponent, NotfoundComponent, ReactiveFormDemoComponent, DynamicConfigDemoComponent } from './pages';
+import {
+  BasicDemoComponent,
+  NotfoundComponent,
+  ReactiveFormDemoComponent,
+  DynamicConfigDemoComponent,
+  MaterialTabDemoComponent
+} from './pages';
 
 const routes: Routes = [
   { path: '', component: BasicDemoComponent },
   { path: 'form', component: ReactiveFormDemoComponent },
   { path: 'dynamic-config', component: DynamicConfigDemoComponent },
+  { path: 'material-tab', component: MaterialTabDemoComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

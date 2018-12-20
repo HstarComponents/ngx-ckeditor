@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { CKEditorComponent } from '../../../src';
+import { CKEditorComponent } from '../../lib';
 
 @Component({
   selector: 'basic-demo',
