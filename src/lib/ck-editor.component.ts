@@ -22,78 +22,88 @@ const defaults = {
   customConfig: ''
 };
 
-export const CKEDITOR_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => CKEditorComponent),
-  multi: true
-};
-
 @Component({
   selector: 'ck-editor',
   template: `
-    <textarea #ck></textarea>
+    <textarea #textarea></textarea>
   `,
-  providers: [CKEDITOR_VALUE_ACCESSOR],
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CKEditorComponent), multi: true }],
   exportAs: 'ckEditor'
 })
-export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
+export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
   private ckIns: any;
+  private innerValue = '';
+  private identifier: string;
+  private disabled = false;
 
-  private propagateChange(_: any) {}
-  private propagateTouch() {}
+  /**
+   * Is readonly mode, default:false
+   */
+  @Input() public readonly = false;
+  /**
+   * The ck-editor config object.
+   */
+  @Input() public config: any = {};
+  /**
+   * The special skin, default: moono-lisa
+   */
+  @Input() public skin = 'moono-lisa';
+  /**
+   * The special language, default: en
+   */
+  @Input() public language = 'en';
+  /**
+   * Use fullpage mode, default:false
+   */
+  @Input() public fullPage = false;
+  /**
+   * Use inline mode, default: false
+   */
+  @Input() public inline = false;
+  /**
+   * The editor id
+   */
+  @Input() public id: string;
 
-  private innerValue: string = '';
+  @Output() public change = new EventEmitter();
+  @Output() public ready = new EventEmitter();
+  @Output() public blur = new EventEmitter();
+  @Output() public focus = new EventEmitter();
+
+  @ViewChild('textarea') public textareaRef: ElementRef;
+
+  private static idx = 1;
+  private static getRandomIdentifier(id: string = '') {
+    return 'editor-' + (id !== '' ? id : String(CKEditorComponent.idx++));
+  }
+
+  onChange = (value: string) => {};
+  onTouched = () => {};
 
   public get instance() {
     return this.ckIns;
   }
-
-  private identifier: string;
-
-  @Input() public readonly: boolean = false;
-  @Input() public config: any = {};
-  @Input() public skin: string = 'moono-lisa';
-  @Input() public language: string = 'en';
-  @Input() public fullPage: boolean = false;
-  @Input() public inline: boolean = false;
-  @Input() public id: string;
-
-  @Output() change = new EventEmitter();
-  @Output() ready = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
-
-  @ViewChild('ck') public ck: ElementRef;
 
   constructor(private ngZone: NgZone) {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.destroyCKEditor();
-    this.initCKEditor(CKEditorComponent.getRandomIdentifier(this.id));
-  }
-
-  private static getRandomIdentifier(id: string = '') {
-    return 'editor-' + (id !== '' ? id : Math.round(Math.random() * 100000000));
+    this.destroyEditor();
+    this.initEditor(CKEditorComponent.getRandomIdentifier(this.id));
   }
 
   ngOnDestroy() {
-    this.destroyCKEditor();
+    this.destroyEditor();
   }
 
-  ngAfterViewInit() {
-    this.destroyCKEditor();
-    this.initCKEditor(CKEditorComponent.getRandomIdentifier(this.id));
-  }
-
-  private initCKEditor(identifier: string) {
+  private initEditor(identifier: string) {
     if (typeof CKEDITOR === 'undefined') {
       return console.warn('CKEditor 4.x is missing (http://ckeditor.com/)');
     }
-
+    const textareaEl = this.textareaRef.nativeElement;
     this.identifier = identifier;
-    this.ck.nativeElement.setAttribute('name', this.identifier);
+    textareaEl.setAttribute('name', this.identifier);
 
     const opt = Object.assign({}, defaults, this.config, {
       readOnly: this.readonly,
@@ -102,9 +112,8 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
       fullPage: this.fullPage,
       inline: this.inline
     });
-    this.ckIns = this.inline
-      ? CKEDITOR.inline(this.ck.nativeElement, opt)
-      : CKEDITOR.replace(this.ck.nativeElement, opt);
+
+    this.ckIns = this.inline ? CKEDITOR.inline(textareaEl, opt) : CKEDITOR.replace(textareaEl, opt);
     this.ckIns.setData(this.innerValue);
 
     this.ckIns.on('change', () => {
@@ -121,7 +130,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     this.ckIns.on('blur', (evt: any) => {
       this.ngZone.run(() => {
         this.blur.emit(evt);
-        this.propagateTouch();
+        this.onTouched();
       });
     });
 
@@ -132,14 +141,15 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     });
   }
 
-  private destroyCKEditor() {
+  private destroyEditor() {
     if (this.ckIns) {
-      if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name)) CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
-      this.ckIns.destroy();
+      if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name)) {
+        CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
+      }
       this.ckIns = null;
       const editorEl = document.querySelector('#cke_' + this.identifier);
-      if (editorEl != null) {
-        editorEl.parentElement && editorEl.parentElement.removeChild(editorEl);
+      if (editorEl != null && editorEl.parentElement) {
+        editorEl.parentElement.removeChild(editorEl);
       }
     }
   }
@@ -147,8 +157,8 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   private updateValue(value: string) {
     this.ngZone.run(() => {
       this.innerValue = value;
-      this.propagateChange(value);
-      this.propagateTouch();
+      this.onChange(value);
+      this.onTouched();
       this.change.emit(value);
     });
   }
@@ -158,18 +168,20 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     if (this.ckIns) {
       // Fix bug that can't emit change event when set non-html tag value twice in fullpage mode.
       this.ckIns.setData(this.innerValue);
-      let val = this.ckIns.getData();
+      const val = this.ckIns.getData();
       this.ckIns.setData(val);
     }
   }
 
-  registerOnChange(fn: any): void {
-    this.propagateChange = fn;
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
-    this.propagateTouch = fn;
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
 }

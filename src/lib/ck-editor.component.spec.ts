@@ -21,4 +21,10 @@ describe('CkeditorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should init editor', () => {
+    component.ngOnChanges({});
+    expect(fixture.nativeElement.querySelector('textarea')).toBeTruthy();
+    component.writeValue('12345');
+  });
 });

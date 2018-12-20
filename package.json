@@ -15,7 +15,8 @@
     "lint:lib": "ng lint ngx-ckeditor",
     "lint:demo": "ng lint examples",
     "publish:lib": "npm run lint:lib && cd dist && npm publish",
-    "test:lib": "ng test ngx-ckeditor --watch=false"
+    "test:lib": "ng test ngx-ckeditor --watch=false",
+    "test": "ng test ngx-ckeditor"
   },
   "repository": {
     "type": "git",
