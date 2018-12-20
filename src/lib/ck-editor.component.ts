@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  AfterViewChecked,
   Component,
   ElementRef,
   EventEmitter,
@@ -30,11 +31,12 @@ const defaults = {
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CKEditorComponent), multi: true }],
   exportAs: 'ckEditor'
 })
-export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
+export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewChecked, ControlValueAccessor {
   private ckIns: any;
   private innerValue = '';
   private identifier: string;
   private disabled = false;
+  private editorInitialized = false;
 
   /**
    * Is readonly mode, default:false
@@ -84,13 +86,29 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, ControlV
     return this.ckIns;
   }
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) {
+    this.identifier = CKEditorComponent.getRandomIdentifier(this.id);
+  }
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.destroyEditor();
-    this.initEditor(CKEditorComponent.getRandomIdentifier(this.id));
+    if (this.editorInitialized) {
+      this.destroyEditor();
+      this.initEditor(this.identifier);
+    }
+  }
+
+  ngAfterViewChecked() {
+    if (!this.editorInitialized && this.documentContains(this.textareaRef.nativeElement)) {
+      console.log('init', this.identifier);
+      this.editorInitialized = true;
+      this.initEditor(this.identifier);
+    } else if (this.editorInitialized && !this.documentContains(this.textareaRef.nativeElement)) {
+      console.log('destroy', this.identifier);
+      this.editorInitialized = false;
+      this.destroyEditor();
+    }
   }
 
   ngOnDestroy() {
@@ -104,6 +122,10 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, ControlV
     const textareaEl = this.textareaRef.nativeElement;
     this.identifier = identifier;
     textareaEl.setAttribute('name', this.identifier);
+
+    if (this.ckIns || !this.documentContains(this.textareaRef.nativeElement)) {
+      return;
+    }
 
     const opt = Object.assign({}, defaults, this.config, {
       readOnly: this.readonly,
@@ -146,6 +168,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, ControlV
       if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name)) {
         CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       }
+      this.ckIns.destroy();
       this.ckIns = null;
       const editorEl = document.querySelector('#cke_' + this.identifier);
       if (editorEl != null && editorEl.parentElement) {
@@ -161,6 +184,10 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, ControlV
       this.onTouched();
       this.change.emit(value);
     });
+  }
+
+  private documentContains(node: Node) {
+    return document.contains ? document.contains(node) : document.body.contains(node);
   }
 
   writeValue(value: any): void {
