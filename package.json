@@ -1,6 +1,6 @@
 {
   "name": "ngx-ckeditor",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "The CKEditor component for angular(2.x and 4.x)",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -22,13 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/HstarComponents/ngx-ckeditor.git"
   },
-  "keywords": [
-    "Ckeditor",
-    "Component",
-    "Angular",
-    "Ng2",
-    "Ngx"
-  ],
+  "keywords": ["Ckeditor", "Component", "Angular", "Ng2", "Ngx"],
   "author": "Jay.M.Hu",
   "license": "MIT",
   "bugs": {
@@ -54,7 +48,7 @@
     "@angular/router": "^7.1.4",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
+    "@types/node": "^8.9.5",
     "codelyzer": "~4.2.1",
     "core-js": "^2.5.4",
     "jasmine-core": "~2.99.1",

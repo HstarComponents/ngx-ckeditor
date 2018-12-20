@@ -86,7 +86,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     return this.ckIns;
   }
 
-  constructor(private ngZone: NgZone) {
+  constructor(private ngZone: NgZone, private hostEl: ElementRef) {
     this.identifier = CKEditorComponent.getRandomIdentifier(this.id);
   }
 
@@ -101,11 +101,9 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
   ngAfterViewChecked() {
     if (!this.editorInitialized && this.documentContains(this.textareaRef.nativeElement)) {
-      console.log('init', this.identifier);
       this.editorInitialized = true;
       this.initEditor(this.identifier);
     } else if (this.editorInitialized && !this.documentContains(this.textareaRef.nativeElement)) {
-      console.log('destroy', this.identifier);
       this.editorInitialized = false;
       this.destroyEditor();
     }
@@ -122,7 +120,6 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
     const textareaEl = this.textareaRef.nativeElement;
     this.identifier = identifier;
     textareaEl.setAttribute('name', this.identifier);
-
     if (this.ckIns || !this.documentContains(this.textareaRef.nativeElement)) {
       return;
     }
@@ -165,12 +162,13 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
   private destroyEditor() {
     if (this.ckIns) {
+      // If use destroy, will fire 'Error code: editor-destroy-iframe'
+      // this.ckIns.destroy();
       if (CKEDITOR.instances.hasOwnProperty(this.ckIns.name)) {
         CKEDITOR.remove(CKEDITOR.instances[this.ckIns.name]);
       }
-      this.ckIns.destroy();
       this.ckIns = null;
-      const editorEl = document.querySelector('#cke_' + this.identifier);
+      const editorEl = this.hostEl.nativeElement.querySelector('#cke_' + this.identifier);
       if (editorEl != null && editorEl.parentElement) {
         editorEl.parentElement.removeChild(editorEl);
       }
