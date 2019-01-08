@@ -1,7 +1,14 @@
 <div class="basic-demo">
   <fieldset>
     <legend>Editor</legend>
-    <ck-editor [(ngModel)]="editorValue" skin="moono-lisa" [language]="language" [fullPage]="true" #ckEditor="ckEditor" (change)="handleValueChange($event)"></ck-editor>
+    <ck-editor
+      [(ngModel)]="editorValue"
+      [inline]="true"
+      skin="moono-lisa"
+      [language]="language"
+      [fullPage]="true"
+      #ckEditor="ckEditor"
+      (change)="handleValueChange($event)"></ck-editor>
     <!-- <ck-editor [(ngModel)]="editorValue"></ck-editor> -->
   </fieldset>
   <hr>
@@ -14,6 +21,10 @@
   <hr>
   <fieldset>
     <legend>Value：</legend>
-    <textarea rows="10" cols="100" class="form-control" [value]="editorValue"></textarea>
+    <textarea
+      rows="10"
+      cols="100"
+      class="form-control"
+      [value]="editorValue"></textarea>
   </fieldset>
 </div>
