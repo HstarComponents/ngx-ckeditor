@@ -12,6 +12,7 @@ export class AppComponent {
     { path: '/', title: 'Basic Demo' },
     { path: '/form', title: 'ReactiveForm Demo' },
     { path: '/dynamic-config', title: 'Dynamic Config' },
-    { path: '/material-tab', title: 'Material Tab Demo' }
+    { path: '/material-tab', title: 'Material Tab Demo' },
+    { path: '/inline', title: 'Inline Mode Demo' }
   ];
 }

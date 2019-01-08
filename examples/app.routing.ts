@@ -6,7 +6,8 @@ import {
   NotfoundComponent,
   ReactiveFormDemoComponent,
   DynamicConfigDemoComponent,
-  MaterialTabDemoComponent
+  MaterialTabDemoComponent,
+  InlineDemoComponent
 } from './pages';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'form', component: ReactiveFormDemoComponent },
   { path: 'dynamic-config', component: DynamicConfigDemoComponent },
   { path: 'material-tab', component: MaterialTabDemoComponent },
+  { path: 'inline', component: InlineDemoComponent },
   { path: '**', component: NotfoundComponent }
 ];
 
