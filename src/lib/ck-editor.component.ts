@@ -72,7 +72,7 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   @Output() public blur = new EventEmitter();
   @Output() public focus = new EventEmitter();
 
-  @ViewChild('textarea') public textareaRef: ElementRef;
+  @ViewChild('textarea', { static: false }) public textareaRef: ElementRef;
 
   private static idx = 1;
   private static getRandomIdentifier(id: string = '') {

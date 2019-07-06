@@ -22,7 +22,7 @@ export class BasicDemoComponent implements OnInit {
     this.language = this.language === 'en' ? 'de' : 'en';
   }
 
-  @ViewChild('ckEditor') ckEditor: CKEditorComponent;
+  @ViewChild('ckEditor', { static: false }) ckEditor: CKEditorComponent;
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
