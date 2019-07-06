@@ -77,6 +77,15 @@ export class AppComponent implements OnInit {
 | Input   | inline   | boolean  | false         | Set the inline mode                                             |
 | Two-way | ngModel  | string   |               | Two-way binding value                                           |
 
+# Version Rules (Imports)
+
+In order to match angular version, the `ngx-ckeditor` version no will same as angular majar version.
+
+* 0.2.x: for angular 2.x ~ 4.x 
+* 0.4.x: for angular 5.x ~ 7.x 
+* 8.x.x: for angular 8.x
+
+
 # How to develop?
 
 ```bash
@@ -113,6 +122,11 @@ A: That because the lib is build for angular 5.x, it will throw the error when y
 
 [Create an issue](https://github.com/HstarComponents/ngx-ckeditor/issues/new)
 
+# [Changelog]
+
+[Changelog](https://github.com/HstarComponents/ngx-ckeditor/blob/master/CHANGELOG.md)
+
 # License
 
 [MIT License](https://github.com/HstarComponents/ngx-ckeditor/blob/master/LICENSE)
+
