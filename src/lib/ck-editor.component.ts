@@ -32,6 +32,8 @@ const defaults = {
   exportAs: 'ckEditor'
 })
 export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterViewChecked, ControlValueAccessor {
+  private static idx = 1;
+
   private ckIns: any;
   private innerValue = '';
   private identifier: string;
@@ -74,7 +76,6 @@ export class CKEditorComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
   @ViewChild('textarea', { static: false }) public textareaRef: ElementRef;
 
-  private static idx = 1;
   private static getRandomIdentifier(id: string = '') {
     return 'editor-' + (id !== '' ? id : String(CKEditorComponent.idx++));
   }
