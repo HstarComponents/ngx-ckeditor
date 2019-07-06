@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 8.0.0 (2019-07-06)
+
+- upgrade to angular 8.x
+
 ## 0.4.0 (2018-12-20)
 
 - Use `@angular/cli` build the project.
