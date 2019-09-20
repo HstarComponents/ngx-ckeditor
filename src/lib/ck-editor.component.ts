@@ -26,7 +26,7 @@ const defaults = {
 @Component({
   selector: 'ck-editor',
   template: `
-    <textarea #textarea></textarea>
+    <textarea #textarea aria-label="editor content"></textarea>
   `,
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CKEditorComponent), multi: true }],
   exportAs: 'ckEditor'
