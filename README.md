@@ -84,7 +84,7 @@ In order to match angular version, the `ngx-ckeditor` version no will same as an
 * 0.2.x: for angular 2.x ~ 4.x 
 * 0.4.x: for angular 5.x ~ 7.x 
 * 8.x.x: for angular 8.x
-
+* 10.x.x: for angular 10.x
 
 # How to develop?
 
@@ -95,18 +95,13 @@ git clone https://github.com/HstarComponents/ngx-ckeditor.git
 npm i
 
 # run dev
-npm run dev 
-# or
 npm start
 
 # build demo
-npm run build:demo
+npm run build
 
 # build lib
 npm run build:lib
-
-# publish
-npm run publish:lib
 
 # test
 npm test
