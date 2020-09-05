@@ -1,0 +1,72 @@
+{
+  "name": "ngx-ckeditor",
+  "version": "8.0.0",
+  "description": "The CKEditor component for angular(2.x and 4.x)",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "ng serve",
+    "build:lib": "ng build ngx-ckeditor --prod",
+    "build:demo": "ng build examples --prod",
+    "lint:lib": "ng lint ngx-ckeditor",
+    "lint:demo": "ng lint examples",
+    "publish:lib": "npm run lint:lib && cd dist && npm publish",
+    "test:lib": "ng test ngx-ckeditor --watch=false",
+    "test": "ng test ngx-ckeditor"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HstarComponents/ngx-ckeditor.git"
+  },
+  "keywords": ["Ckeditor", "Component", "Angular", "Ng2", "Ngx"],
+  "author": "Jay.M.Hu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HstarComponents/ngx-ckeditor/issues"
+  },
+  "homepage": "https://github.com/HstarComponents/ngx-ckeditor#readme",
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.803.5",
+    "@angular-devkit/build-ng-packagr": "~0.803.5",
+    "@angular/animations": "^8.2.7",
+    "@angular/cdk": "^8.2.0",
+    "@angular/cli": "~8.3.5",
+    "@angular/common": "8.2.7",
+    "@angular/compiler": "8.2.7",
+    "@angular/compiler-cli": "8.2.7",
+    "@angular/core": "8.2.7",
+    "@angular/forms": "8.2.7",
+    "@angular/http": "^7.2.15",
+    "@angular/language-service": "^8.2.7",
+    "@angular/material": "^8.2.0",
+    "@angular/platform-browser": "^8.2.7",
+    "@angular/platform-browser-dynamic": "^8.2.7",
+    "@angular/router": "^8.2.7",
+    "@types/jasmine": "~3.4.0",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.0.12",
+    "codelyzer": "~5.1.0",
+    "core-js": "^3.2.1",
+    "jasmine-core": "~3.4.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~4.1.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.5",
+    "karma-jasmine": "~2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-packagr": "^5.5.1",
+    "protractor": "~5.4.2",
+    "rxjs": "^6.5.3",
+    "tsickle": ">=0.35.0",
+    "tslib": "^1.10.0",
+    "tslint": "~5.18.0",
+    "typescript": "~3.4.5",
+    "webpack": "^4.40.2",
+    "zone.js": "^0.10.2"
+  },
+  "dependencies": {}
+}

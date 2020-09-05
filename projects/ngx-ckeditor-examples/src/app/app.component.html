@@ -1,0 +1,49 @@
+<div class="app">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a
+        class="navbar-brand"
+        href="#">
+        ngx-ckeditor Demo
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExample07"
+        aria-controls="navbarsExample07"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li
+            *ngFor="let menu of menus"
+            class="nav-item"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}">
+            <a
+              class="nav-link"
+              [routerLink]="menu.path">
+              {{menu.title}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              target="_blank"
+              href="https://github.com/HstarComponents/ngx-ckeditor">
+              Github Repo
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-content container">
+    <br>
+    <router-outlet></router-outlet>
+  </div>
+</div>
