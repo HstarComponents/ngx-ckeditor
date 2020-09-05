@@ -98,10 +98,10 @@ npm i
 npm start
 
 # build demo
-npm run build
+npm run build:demo
 
 # build lib
-npm run build:lib
+npm run build
 
 # test
 npm test

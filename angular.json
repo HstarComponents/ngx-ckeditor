@@ -163,5 +163,5 @@
   "cli": {
     "analytics": false
   },
-  "defaultProject": "ngx-ckeditor-examples"
+  "defaultProject": "ngx-ckeditor"
 }
