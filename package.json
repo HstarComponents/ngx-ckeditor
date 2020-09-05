@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "build:demo": "ng build ngx-ckeditor-examples --prod",
+    "build:ngx-ckeditor": "ng build ngx-ckeditor --prod",
+    "build:ngx-ckeditor-examples": "ng build ngx-ckeditor-examples --prod",
+    "build:lib": "gulp build:lib",
+    "build:demo": "gulp build:demo",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -36,6 +38,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "gulp": "^4.0.2",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -45,6 +48,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^10.1.0",
     "protractor": "~7.0.0",
+    "shelljs": "^0.8.4",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"

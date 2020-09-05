@@ -32,13 +32,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-ckeditor/tsconfig.lib.json",
-              "projects/ngx-ckeditor/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/ngx-ckeditor/tsconfig.lib.json", "projects/ngx-ckeditor/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -53,19 +48,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-ckeditor-examples",
+            "outputPath": "docs",
             "index": "projects/ngx-ckeditor-examples/src/index.html",
             "main": "projects/ngx-ckeditor-examples/src/main.ts",
             "polyfills": "projects/ngx-ckeditor-examples/src/polyfills.ts",
             "tsConfig": "projects/ngx-ckeditor-examples/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "projects/ngx-ckeditor-examples/src/favicon.ico",
-              "projects/ngx-ckeditor-examples/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-ckeditor-examples/src/styles.css"
-            ],
+            "assets": ["projects/ngx-ckeditor-examples/src/favicon.ico", "projects/ngx-ckeditor-examples/src/assets"],
+            "styles": ["projects/ngx-ckeditor-examples/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -123,13 +113,8 @@
             "polyfills": "projects/ngx-ckeditor-examples/src/polyfills.ts",
             "tsConfig": "projects/ngx-ckeditor-examples/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-ckeditor-examples/karma.conf.js",
-            "assets": [
-              "projects/ngx-ckeditor-examples/src/favicon.ico",
-              "projects/ngx-ckeditor-examples/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-ckeditor-examples/src/styles.css"
-            ],
+            "assets": ["projects/ngx-ckeditor-examples/src/favicon.ico", "projects/ngx-ckeditor-examples/src/assets"],
+            "styles": ["projects/ngx-ckeditor-examples/src/styles.css"],
             "scripts": []
           }
         },
@@ -141,9 +126,7 @@
               "projects/ngx-ckeditor-examples/tsconfig.spec.json",
               "projects/ngx-ckeditor-examples/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -159,7 +142,8 @@
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
     "analytics": false
   },
