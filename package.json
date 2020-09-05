@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "author": "Jay.M.Hu",
+  "license": "MIT",
   "dependencies": {
     "@angular/animations": "~10.1.0",
     "@angular/cdk": "^10.2.0",
