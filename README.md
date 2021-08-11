@@ -106,6 +106,12 @@ npm run build:ngx-ckeditor
 
 # test
 npm test
+
+# Package Publish
+npm run build:ngx-ckeditor
+cp README.md dist/ngx-ckeditor/README.md && cp CHANGELOG.md dist/ngx-ckeditor/CHANGELOG.md && cd dist/ngx-ckeditor
+npm publish
+
 ```
 
 # FAQ?
