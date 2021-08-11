@@ -107,11 +107,14 @@ npm run build:ngx-ckeditor
 # test
 npm test
 
+# Upgrade angular version
+ng update 
+ng update @angular/core@12 @angular/cli@12
+
 # Package Publish
 npm run build:ngx-ckeditor
 cp README.md dist/ngx-ckeditor/README.md && cp CHANGELOG.md dist/ngx-ckeditor/CHANGELOG.md && cd dist/ngx-ckeditor
 npm publish
-
 ```
 
 # FAQ?
