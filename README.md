@@ -85,6 +85,7 @@ In order to match angular version, the `ngx-ckeditor` version no will same as an
 * 0.4.x: for angular 5.x ~ 7.x 
 * 8.x.x: for angular 8.x
 * 10.x.x: for angular 10.x
+* 11.x.x: for angular 11.x
 
 # How to develop?
 

@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## 10.0.0 (r2020-09-06)
+## 11.0.0 (2021-08-11)
+
+- upgrade to angular 11.x
+
+## 10.0.0 (2020-09-06)
 
 - upgrade to angular 10.x
 
