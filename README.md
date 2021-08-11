@@ -2,7 +2,7 @@
 
 [ ![Travis CI Status](https://travis-ci.org/HstarComponents/ngx-ckeditor.svg?branch=master)](https://travis-ci.org/HstarComponents/ngx-ckeditor)
 
-The CKEditor component for angular(2.x+)
+The CKEditor component for angular
 
 # Usage
 
@@ -99,10 +99,10 @@ npm i
 npm start
 
 # build demo
-npm run build:demo
+npm run build:ngx-ckeditor-examples
 
 # build lib
-npm run build:lib
+npm run build:ngx-ckeditor
 
 # test
 npm test
