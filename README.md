@@ -115,6 +115,10 @@ ng update @angular/core@12 @angular/cli@12
 npm run build:ngx-ckeditor
 cp README.md dist/ngx-ckeditor/README.md && cp CHANGELOG.md dist/ngx-ckeditor/CHANGELOG.md && cd dist/ngx-ckeditor
 npm publish
+
+# Update Docs Site
+npm run build:ngx-ckeditor-examples
+# replace docs/index.html content
 ```
 
 # FAQ?
