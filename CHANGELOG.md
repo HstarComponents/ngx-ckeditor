@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 11.0.1 (2021-08-11)
+
+- fix peer dependencies error
+
 ## 11.0.0 (2021-08-11)
 
 - upgrade to angular 11.x

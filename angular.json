@@ -53,10 +53,15 @@
             "main": "projects/ngx-ckeditor-examples/src/main.ts",
             "polyfills": "projects/ngx-ckeditor-examples/src/polyfills.ts",
             "tsConfig": "projects/ngx-ckeditor-examples/tsconfig.app.json",
-            "aot": true,
             "assets": ["projects/ngx-ckeditor-examples/src/favicon.ico", "projects/ngx-ckeditor-examples/src/assets"],
             "styles": ["projects/ngx-ckeditor-examples/src/styles.css"],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -86,7 +91,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

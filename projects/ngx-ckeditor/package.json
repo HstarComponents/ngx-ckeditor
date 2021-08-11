@@ -1,11 +1,11 @@
 {
   "name": "ngx-ckeditor",
-  "version": "11.0.0",
+  "version": "12.0.0",
   "description": "The CKEditor component for angular",
   "keywords": ["angular", "ckeditor"],
   "peerDependencies": {
-    "@angular/common": "^10.1.0",
-    "@angular/core": "^10.1.0"
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
