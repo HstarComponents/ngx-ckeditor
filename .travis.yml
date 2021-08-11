@@ -3,12 +3,13 @@ language: node_js
 
 # Special the node version, can set multi versions
 node_js:
-  - 8
   - 10
+  - 12
+  - 14
 
 # Set the script for running
 script:
-  - npm run test:lib
+  - npm test
 
 # Set which branch should fire the CI flow
 branches:
