@@ -2,7 +2,9 @@
 
 [ ![Travis CI Status](https://travis-ci.org/HstarComponents/ngx-ckeditor.svg?branch=master)](https://travis-ci.org/HstarComponents/ngx-ckeditor)
 
-The CKEditor component for angular
+The CKEditor 4.x component for angular
+
+**If you used the ckeditor 5.x, please see: https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#quick-start**
 
 # Usage
 
